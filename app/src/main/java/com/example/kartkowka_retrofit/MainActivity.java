@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,11 +63,23 @@ public class MainActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+                        int obszar;
+
+                        try{
+                            obszar = Integer.parseInt(wpiszObszar.getText().toString());
+                        }
+                        catch(Exception e){
+                            return;
+                        }
+
+                        // /\ SIGMA IDIOTOODPORNE
+
                         noweP.clear();
                         for (Planszowka x: planszowki)
                         {
 
-                            if(Integer.parseInt(wpiszObszar.getText().toString()) >= x.getMinWiek()){
+                            if(obszar >= x.getMinWiek()){
                                 noweP.add(x);
                                 adapter = new ArrayAdapter<>(
                                         getApplicationContext(), android.R.layout.simple_list_item_1, noweP
